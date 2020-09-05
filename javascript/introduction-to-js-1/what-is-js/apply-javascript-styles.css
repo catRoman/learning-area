@@ -1,0 +1,17 @@
+#body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    justify-items: stretch;
+}
+
+div div {
+    display: grid;
+    grid-template-rows: auto;
+    border: solid blue;
+}
+
+h1 {
+    grid-column: 1/5;
+    justify-self: center;
+}
