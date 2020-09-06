@@ -50,12 +50,19 @@
         const lowOrHi = document.querySelector('.lowOrHi');
 
         const guessSubmit = document.querySelector('.guessSubmit');
+<<<<<<< HEAD
         const guessField = document.querySelector('.guessField');
 
+=======
+
+        const guessField = document.querySelector('.guessField');
+
+>>>>>>> debug-tutorial-branch
         let guessCount = 1;
         let resetButton;
         guessField.focus();
 
+<<<<<<< HEAD
         function checkGuess() {
             let userGuess = Number(guessField.value);
             if (guessCount === 1) {
@@ -69,6 +76,22 @@
                 lastResult.style.backgroundColor = 'green';
                 lowOrHi.textContent = '';
                 setGameOver();
+=======
+        function checkguess() {
+            let userGuess = Number(guessField.value);
+
+            if (guessCount === 1) {
+                guesses.textContent = 'Previous guesses: ';
+            }
+            guesses.textContent += userGuess + ' ';
+
+            if (userGuess === randomNumber) {
+                lastResult.textContent = 'Congradulations! you got it right!';
+                lastResult.style.backgroundColor = 'green';
+                lowOrHi.textContent = '';
+                setGameOver();
+
+>>>>>>> debug-tutorial-branch
             } else if (guessCount === 10) {
                 lastResult.textContent = '!!!GAME OVER!!!';
                 lowOrHi.textContent = '';
@@ -89,7 +112,11 @@
             guessField.value = '';
             guessField.focus();
         }
+<<<<<<< HEAD
         guessSubmit.addEventListener('click', checkGuess);
+=======
+        guessSubmit.addEventListener('click', checkguess);
+>>>>>>> debug-tutorial-branch
 
         function setGameOver() {
             guessField.disabled = true;
@@ -99,6 +126,12 @@
             document.body.appendChild(resetButton);
             resetButton.addEventListener('click', resetGame);
         }
+<<<<<<< HEAD
+=======
+
+        function resetGame() {
+            guessCount = 1;
+>>>>>>> debug-tutorial-branch
 
         function resetGame() {
             guessCount = 1;
