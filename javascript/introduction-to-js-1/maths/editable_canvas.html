@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Editable canvas example</title>
     <style>
-      html {
-        font-family: sans-serif;
-      }
-
-      h2 {
-        font-size: 16px;
-      }
-
-      .a11y-label {
-        margin: 0;
-        text-align: right;
-        font-size: 0.7rem;
-        width: 98%;
-      }
-
-      body {
-        margin: 10px;
-        background: #f5f9fa;
-      }
-
-      textarea {
-        height: 150px;
-        background-color: #F4F7F8;
-        border: none;
-        border-left: 6px solid #558ABB;
-        color: #4D4E53;
-        width: 90%;
-        max-width: 700px;
-        padding: 10px 10px 0px;
-      }
-
-      .playable-buttons {
-        text-align: right;
-        width: 90%;
-        max-width: 700px;
-        padding: 5px 10px 5px 26px;
-      }
-
-      canvas {
-        background: white;
-        border: 1px solid #4D4E53;
-        border-radius: 2px;
-      }
+        html {
+            font-family: sans-serif;
+        }
+        
+        h2 {
+            font-size: 16px;
+        }
+        
+        .a11y-label {
+            margin: 0;
+            text-align: right;
+            font-size: 0.7rem;
+            width: 98%;
+        }
+        
+        body {
+            margin: 10px;
+            background: #f5f9fa;
+        }
+        
+        textarea {
+            height: 150px;
+            background-color: #F4F7F8;
+            border: none;
+            border-left: 6px solid #558ABB;
+            color: #4D4E53;
+            width: 90%;
+            max-width: 700px;
+            padding: 10px 10px 0px;
+        }
+        
+        .playable-buttons {
+            text-align: right;
+            width: 90%;
+            max-width: 700px;
+            padding: 5px 10px 5px 26px;
+        }
+        
+        canvas {
+            background: white;
+            border: 1px solid #4D4E53;
+            border-radius: 2px;
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <h2>Live output</h2>
     <canvas id="canvas" width="400" height="250" class="playable-canvas">
     </canvas>
@@ -62,19 +64,19 @@
 let x = 50; let y = 50;
 
 // Edit the two lines below here ONLY
-x = 50;
-y = 50;
+x = 50 ;
+y = x += 50* 3;
 
 ctx.fillStyle = 'green';
 ctx.fillRect(10, 10, x, y);
     </textarea>
 
     <div class="playable-buttons">
-      <input id="reset" type="button" value="Reset" />
+        <input id="reset" type="button" value="Reset" />
     </div>
-  </body>
+</body>
 
-  <script>
+<script>
     const canvas = document.getElementById('canvas');
     const para = document.querySelector('p');
     const ctx = canvas.getContext('2d');
@@ -84,13 +86,14 @@ ctx.fillRect(10, 10, x, y);
     let code = textarea.value;
 
     function drawCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      eval(textarea.value);
-      para.textContent = 'The rectangle is ' + x + 'px wide and ' + y + 'px high.';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        eval(textarea.value);
+        para.textContent = 'The rectangle is ' + x + 'px wide and ' + y + 'px high.';
     }
 
     reset.addEventListener('click', function() {
-      textarea.value = code; drawCanvas();
+        textarea.value = code;
+        drawCanvas();
     });
 
     textarea.addEventListener('input', drawCanvas);
@@ -99,29 +102,30 @@ ctx.fillRect(10, 10, x, y);
     // stop tab key tabbing out of textarea and
     // make it write a tab at the caret position instead
 
-    textarea.onkeydown = function(e){
-      if (e.keyCode === 9) {
-        e.preventDefault();
-        insertAtCaret('\t');
-      }
+    textarea.onkeydown = function(e) {
+        if (e.keyCode === 9) {
+            e.preventDefault();
+            insertAtCaret('\t');
+        }
 
-      if (e.keyCode === 27) {
-        textarea.blur();
-      }
+        if (e.keyCode === 27) {
+            textarea.blur();
+        }
     };
 
     function insertAtCaret(text) {
-      const scrollPos = textarea.scrollTop;
-      const caretPos = textarea.selectionStart;
-      const front = (textarea.value).substring(0, caretPos);
-      const back = (textarea.value).substring(textarea.selectionEnd, textarea.value.length);
+        const scrollPos = textarea.scrollTop;
+        const caretPos = textarea.selectionStart;
+        const front = (textarea.value).substring(0, caretPos);
+        const back = (textarea.value).substring(textarea.selectionEnd, textarea.value.length);
 
-      textarea.value = front + text + back;
-      caretPos = caretPos + text.length;
-      textarea.selectionStart = caretPos;
-      textarea.selectionEnd = caretPos;
-      textarea.focus();
-      textarea.scrollTop = scrollPos;
+        textarea.value = front + text + back;
+        caretPos = caretPos + text.length;
+        textarea.selectionStart = caretPos;
+        textarea.selectionEnd = caretPos;
+        textarea.focus();
+        textarea.scrollTop = scrollPos;
     }
-  </script>
+</script>
+
 </html>
